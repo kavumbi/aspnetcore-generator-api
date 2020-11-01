@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Faker;
-using Faker.Extensions;
 using MimeKit;
 using MailKit.Net.Smtp;
 using MailKit.Security;
@@ -37,7 +35,7 @@ namespace api.Controllers
                 await mailClient.DisconnectAsync(true);
             }
         }
-        
+
         [HttpGet]
         public IEnumerable<string> Names(Range range)
             => range.Of(Name.FullName);
