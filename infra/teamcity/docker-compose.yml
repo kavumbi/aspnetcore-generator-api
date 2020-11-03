@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+    teamcity:
+        image: jetbrains/teamcity-server
+        ports:
+          - "8111:8111"
+        volumes:
+          - teamcity-server-datadir:/data/teamcity_server/datadir
+          - teamcity-server-logs:/opt/teamcity/logs
+    teamcity-agent-lc:
+        #image: jetbrains/teamcity-agent:EAP-linux-sudo
+        image: jetbrains/teamcity-agent:2017.1.2
+        environment:
+            - SERVER_URL=http://teamcity:8111
+            #- DOCKER_IN_DOCKER=start
+        privileged: true
+        volumes:
+         - /var/run/docker.sock:/var/run/docker.sock
+         #- /opt/buildagent/work:/opt/buildagent/work
+         #- /opt/buildagent/temp:/opt/buildagent/temp
+         #- /opt/buildagent/tools:/opt/buildagent/tools
+         #- /opt/buildagent/plugins:/opt/buildagent/plugins
+         #- /opt/buildagent/system:/opt/buildagent/system
+
+volumes:
+    teamcity-server-datadir:
+    teamcity-server-logs:
