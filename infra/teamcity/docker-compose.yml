@@ -8,7 +8,7 @@ services:
         volumes:
           - teamcity-server-datadir:/data/teamcity_server/datadir
           - teamcity-server-logs:/opt/teamcity/logs
-    teamcity-agent-lc:
+    teamcity-agent-ld:
         #image: jetbrains/teamcity-agent:EAP-linux-sudo
         image: jetbrains/teamcity-agent:2017.1.2
         environment:
@@ -22,7 +22,8 @@ services:
          #- /opt/buildagent/tools:/opt/buildagent/tools
          #- /opt/buildagent/plugins:/opt/buildagent/plugins
          #- /opt/buildagent/system:/opt/buildagent/system
-
+        extra_hosts:
+          - "docker-registry:192.168.19.49"
 volumes:
     teamcity-server-datadir:
     teamcity-server-logs:
