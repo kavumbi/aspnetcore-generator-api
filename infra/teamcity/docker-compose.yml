@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.1'
 
 services:
     teamcity:
@@ -10,7 +10,8 @@ services:
           - teamcity-server-logs:/opt/teamcity/logs
     teamcity-agent-ld:
         #image: jetbrains/teamcity-agent:EAP-linux-sudo
-        image: jetbrains/teamcity-agent:2017.1.2
+        image: aspnetcore/teamcity-agent-with-compose:2017.1.2
+        build: ./agent
         environment:
             - SERVER_URL=http://teamcity:8111
             #- DOCKER_IN_DOCKER=start
