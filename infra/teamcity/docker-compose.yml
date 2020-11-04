@@ -25,6 +25,16 @@ services:
          #- /opt/buildagent/system:/opt/buildagent/system
         extra_hosts:
           - "docker-registry:192.168.19.49"
+    teamcity-agent-re:
+      image: aspnetcore/teamcity-agent-with-compose:2017.1.2
+      build: ./agent
+      environment:
+          - SERVER_URL=http://teamcity:8111
+      privileged: true
+      volumes:
+        - /var/run/docker.sockre:/var/run/docker.sock
+      extra_hosts:
+        - "docker-registry:192.168.19.49"          
 volumes:
     teamcity-server-datadir:
     teamcity-server-logs:
