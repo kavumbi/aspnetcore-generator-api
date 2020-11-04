@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3.8'
 
 services:
     teamcity:
@@ -8,7 +8,7 @@ services:
         volumes:
           - teamcity-server-datadir:/data/teamcity_server/datadir
           - teamcity-server-logs:/opt/teamcity/logs
-    teamcity-agent-ld:
+    teamcity-agent-le:
         #image: jetbrains/teamcity-agent:EAP-linux-sudo
         image: aspnetcore/teamcity-agent-with-compose:2017.1.2
         build: ./agent
