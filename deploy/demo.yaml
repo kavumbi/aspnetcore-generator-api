@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+    generator:
+        image: docker-registry:443/aspnetcore/gen:ci-${GENERATOR_BUILD_NUMBER-20}
+        ports:
+            - "9080:80"
+    mail:
+        image: mailhog/mailhog
+        ports:
+            - "9081:8025"

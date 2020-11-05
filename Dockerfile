@@ -12,7 +12,7 @@ RUN dotnet restore tests/tests.csproj
 COPY . .
 
 # test
-ENV TEAMCITY_PROJECT_NAME=fake
+ENV TEAMCITY_PROJECT_NAME=${TEAMCITY_PROJECT_NAME}
 RUN dotnet test tests/tests.csproj
 
 # publish
@@ -22,4 +22,4 @@ FROM mcr.microsoft.com/dotnet/core/aspnet
 WORKDIR /publish 
 COPY --from=build-env /publish .
 
-ENTRYPOINT ["dotnet", "api.dll"]
+ENTRYPOINT ["dotnet", "api.dll", "--verbosity=normal"]

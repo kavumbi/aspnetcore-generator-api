@@ -8,6 +8,8 @@ services:
         image: aspnetcore/generator:multi
         ports:
             - 8082:80
+        environment: 
+            -TEAMCITY_PROJECT_NAME
     mail:
         image: mailhog/mailhog
         ports:
